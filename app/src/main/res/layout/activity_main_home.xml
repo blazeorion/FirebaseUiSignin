@@ -7,7 +7,7 @@
     tools:context=".MainHome">
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/button_sign_out"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"

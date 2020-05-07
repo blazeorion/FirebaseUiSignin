@@ -61,6 +61,21 @@ public class CreateAccount extends AppCompatActivity {
                             Log.d(TAG, "createUserWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
 
+                            if(user != null){
+                                user.sendEmailVerification()
+                                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<Void> task) {
+                                                if (task.isSuccessful()) {
+                                                    Log.d(TAG, "Email sent.");
+                                                }
+                                            }
+                                        });
+                            }
+
+
+
+
                             Intent intent = new Intent(CreateAccount.this, MainHome.class);
                             startActivity(intent);
                         } else {
