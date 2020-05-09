@@ -4,8 +4,6 @@
     <string name="label_google_sign_in">Firebase + Google Sign In</string>
     <string name="desc_google_sign_in">Use a Google Sign In credential to authenticate with Firebase.</string>
 
-    <string name="label_facebook_login">Firebase + Facebook Login</string>
-    <string name="desc_facebook_login">Use a Facebook Login credential to authenticate with Firebase.</string>
 
     <string name="label_emailpassword">Email/Password Authentication</string>
     <string name="desc_emailpassword">Use an email and password to authenticate with Firebase.</string>
@@ -63,11 +61,9 @@
     <string name="google_status_fmt">Google User: %s</string>
     <string name="google_title_text">Google Sign In</string>
 
-    <string name="facebook_status_fmt">Facebook User: %s</string>
-    <string name="facebook_title_text">Facebook Login</string>
 
     <string name="emailpassword_status_fmt">Email User: %1$s (verified: %2$b)</string>
-    <string name="emailpassword_title_text">Email and Password</string>
+    <string name="emailpassword_title_text">Login with Email/Password, or Google</string>
 
     <string name="passwordless_status_fmt">Email User: %1$s (verified: %2$b)</string>
     <string name="passwordless_title_text">Passwordless Sign In</string>
@@ -110,5 +106,12 @@
     <string name="uid">uid</string>
     <string name="user_id">User Id</string>
     <string name="user_headshot">user headshot</string>
+    <string name="login_with_facebook">Login with Facebook</string>
+
+    <string name="facebook_app_id">278119593206741</string>
+    <string name="fb_login_protocol_scheme">fb278119593206741</string>
+    <string name="facebook_application_id">278119593206741</string>
+    <string name="disconnect_google_account">Disconnect Google Account</string>
+
 
 </resources>
