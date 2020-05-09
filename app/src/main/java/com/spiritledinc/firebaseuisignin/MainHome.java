@@ -12,9 +12,11 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -52,7 +54,7 @@ public class MainHome extends AppCompatActivity implements View.OnClickListener 
     private ImageView userPhotoHome;
 
     private String strMessage;
-
+    Button revokeGoogle;
     private ProgressBar spinner;
 
     @Override
@@ -60,6 +62,8 @@ public class MainHome extends AppCompatActivity implements View.OnClickListener 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_home);
 
+        revokeGoogle = findViewById(R.id.button_revoke_access);
+        revokeGoogle.setVisibility(View.GONE);
 
 
         //set spinner to visible
@@ -130,6 +134,9 @@ public class MainHome extends AppCompatActivity implements View.OnClickListener 
 //                Log.d(TAG, "Firebase Photo URL: "+String.valueOf(photoUrl));
 //
 //            }
+            //hide spinner
+            spinner = findViewById(R.id.progressBarHome);
+            spinner.setVisibility(View.GONE);
         }
     }
 
@@ -146,6 +153,7 @@ public class MainHome extends AppCompatActivity implements View.OnClickListener 
         //get values of signed in user and set to UI
         GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(this);
         if (acct != null) {
+            revokeGoogle.setVisibility(View.VISIBLE);
 
             Uri personPhoto = acct.getPhotoUrl();
             Log.d(TAG, "Google Photo: "+personPhoto);
@@ -185,6 +193,8 @@ public class MainHome extends AppCompatActivity implements View.OnClickListener 
         switch (v.getId()) {
             case R.id.button_sign_out:
                 signOut(v);
+            case R.id.button_revoke_access:
+                revokeGoogleAccess(v);
             break;
             // add other onclicks here
         }
@@ -208,6 +218,24 @@ public class MainHome extends AppCompatActivity implements View.OnClickListener 
                 .addOnCompleteListener(this, new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
+                        Intent intent = new Intent(MainHome.this, MainActivity.class);
+                        startActivity(intent);
+                    }
+                });
+    }
+
+
+    public void revokeGoogleAccess(View view) {
+        //set spinner to visible
+        spinner = findViewById(R.id.progressBarHome);
+        spinner.setVisibility(View.VISIBLE);
+
+        mGoogleSignInClient.revokeAccess()
+                .addOnCompleteListener(this, new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        Toast.makeText(MainHome.this, "App Access Revoked.",
+                                Toast.LENGTH_LONG).show();
                         Intent intent = new Intent(MainHome.this, MainActivity.class);
                         startActivity(intent);
                     }
